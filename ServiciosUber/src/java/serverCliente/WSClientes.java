@@ -19,9 +19,11 @@ public class WSClientes {
     /**
      * Con este metodo sabemos si el usuario esta 
      * autorizado para pedir un transporte
+     * @param id
+     * @return 
      */
-    @WebMethod(operationName = "verificacion_de_cuenta")
-    public boolean UsuarioActivo(@WebParam(name = "Id") String id) {
+    @WebMethod(operationName = "Verificacion_de_cuenta")
+    public boolean VerificacionDeCuenta(@WebParam(name = "Id") String id) {
         /*
         *
         * Buscar en base de datos estado del Usuario
@@ -29,8 +31,6 @@ public class WSClientes {
         *
         */
         int registrado = (int) (Math.random()*6);
-        if (registrado <5)
-            return true;
-        return false;
+        return registrado <5;
     }
 }
