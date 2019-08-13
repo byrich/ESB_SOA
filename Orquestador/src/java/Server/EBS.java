@@ -1,0 +1,77 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Server;
+
+import java.util.Random;
+import javax.jws.WebService;
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
+import nodo.pilotoRetorno;
+import serviceCarros.WSCarros;
+import serviceCarros.WSCarros_Service;
+import serviceCliente.WSClientes;
+import serviceCliente.WSClientes_Service;
+import servicePilotos.Piloto;
+import servicePilotos.WSPilotos;
+import servicePilotos.WSPilotos_Service;
+
+/**
+ *
+ * @author Byrich
+ */
+@WebService(serviceName = "EBS")
+public class EBS {
+
+    /**
+     * Servicio principal de orquestacion de servicios
+     * Verificando en el siguiente orden:
+     *    1)verificacion de estado de cuenta
+     *    2)Solicitud de auto segun posicion 
+     *    3)registro de vuelta 
+     *    4)Avisar al piloto la vuelta solicitada 
+     * Cada servicio cuenta con distinto proveedor
+     * @return datos del piloto
+     */
+    @WebMethod(operationName = "Solicitud_de_transporte")
+    public pilotoRetorno solicitudCliente(@WebParam(name = "idCliente")String id, @WebParam(name = "coordA") double aPos, @WebParam(name = "coordB") double bPos) {
+        //proveedor 1: servicios del cliente
+        WSClientes_Service clienteWs = new WSClientes_Service();
+        WSClientes clienteS = clienteWs.getWSClientesPort();
+        //proveedor 2: servicios del auto
+        WSCarros_Service carroWs = new WSCarros_Service();
+        WSCarros carroS = carroWs.getWSCarrosPort();
+        //proveedor 2: servicios del piloto
+        WSPilotos_Service pilotoWs = new WSPilotos_Service();
+        WSPilotos pilotoS = pilotoWs.getWSPilotosPort();
+        
+        //paso 1: verificacion de estado de cuenta
+        boolean cuentaCorrecta = clienteS.verificacionDeCuenta(id);
+        if (cuentaCorrecta){
+            // paso 2:
+            // Si la cuenta esta correcta se procede
+            // a verificar si existe autos cercanos
+            int idPiloto = carroS.autosCercanos(aPos, bPos);
+            if (idPiloto != -1){
+                // paso 3:
+                // Si la se encontro un auto disponible
+                // registramos el viaje segun el piloto
+                Piloto temp = pilotoS.registrarViaje(idPiloto, aPos, bPos);
+                pilotoRetorno salida = new pilotoRetorno(temp.getNombre(),temp.getPlaca(),temp.getAuto(),temp.getColor());
+                return salida;
+            }
+            else {
+                // No se encontro auto disponible para le viaje
+                // codigo de error: 2
+                pilotoRetorno salida = new pilotoRetorno(2);
+                return salida;
+            }
+        }
+        // No se cuenta con cuenta autorizada
+        // codigo de error: 1
+        pilotoRetorno salida = new pilotoRetorno(1);
+        return salida;
+    }
+}
