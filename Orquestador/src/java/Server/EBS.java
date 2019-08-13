@@ -70,8 +70,8 @@ public class EBS {
             }
         }
         // No se cuenta con cuenta autorizada
-        // codigo de error: 1
-        pilotoRetorno salida = new pilotoRetorno(1);
+        // codigo de error: 3
+        pilotoRetorno salida = new pilotoRetorno(3);
         return salida;
     }
 }
