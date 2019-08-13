@@ -60,6 +60,9 @@ public class EBS {
                 // registramos el viaje segun el piloto
                 Piloto temp = pilotoS.registrarViaje(idPiloto, aPos, bPos);
                 pilotoRetorno salida = new pilotoRetorno(temp.getNombre(),temp.getPlaca(),temp.getAuto(),temp.getColor());
+                // paso 4:
+                // Enviar notiviacion al piloto
+                // "Notificar(); ..."
                 return salida;
             }
             else {
