@@ -8,7 +8,7 @@ En este repositorio se encuentran proyectos que buscan simular un entorno de mic
 
 - El proyecto **Frontend** simula una muy sencilla aplicacion movil que consume los servicios del orquestador.
 
-![sf](imagen.png)
+![sf](/arquitectura.png)
 
 Creado por **Byrich** 
 - Carnet: 201404099
