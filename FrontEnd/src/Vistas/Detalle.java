@@ -15,13 +15,13 @@ import javax.swing.JOptionPane;
  *
  * @author Byrich
  */
-public class Principal extends javax.swing.JFrame {
+public class Detalle extends javax.swing.JFrame {
     
     public EBS servicio;
     /**
      * Creates new form Principal
      */
-    public Principal() {
+    public Detalle() {
         initComponents();
     }
 
@@ -41,7 +41,8 @@ public class Principal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -57,7 +58,7 @@ public class Principal extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(0, 0, 0));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Solicitar Transporte");
+        jButton1.setText("Verificar Cuenta");
         jButton1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,13 +101,23 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton3.setBackground(new java.awt.Color(0, 0, 0));
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Detallado");
-        jButton3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setBackground(new java.awt.Color(0, 0, 0));
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Solicitar por ubicacion");
+        jButton2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setBackground(new java.awt.Color(0, 0, 0));
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setText("Notificar y almacenar");
+        jButton4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
             }
         });
 
@@ -116,24 +127,25 @@ public class Principal extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(47, 47, 47))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(103, 103, 103)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(57, 57, 57)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -173,34 +185,30 @@ public class Principal extends javax.swing.JFrame {
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        /*
-        *Obtenemos id y 
-        * posicion geografica acutal
-        * y mandamos solicitud
-        */
-        PilotoRetorno retorno = this.servicio.solicitudDeTransporte(this.getMyId(), this.getMyPos("x"), this.getMyPos("y"));
-        if (retorno.getCodigo() == 1){
-            this.hide();
-            Datos dat = new Datos();
-            dat.servicio = this.servicio;
-            dat.pintar(retorno);
-            dat.setVisible(true);
-            dat.show();
-        }
-        else if (retorno.getCodigo() == 2)
-            JOptionPane.showMessageDialog(null, "Tu periodo de prueba ya expiro!");
-        else
-            JOptionPane.showMessageDialog(null, "No se encontraron Pilotos disponibles");
+        String idCliente = this.getMyId();
+        JOptionPane.showMessageDialog(null, "Se envia parametro '" + idCliente + "' de tipo String");
+        boolean resp = this.servicio.paso1(idCliente);
+        JOptionPane.showMessageDialog(null, "EBS retorna '" + resp + "' de tipo boolean");
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        this.hide();
-        Detalle dat = new Detalle();
-        dat.servicio = this.servicio;
-        dat.setVisible(true);
-        dat.show();
-    }//GEN-LAST:event_jButton3ActionPerformed
+        JOptionPane.showMessageDialog(null, "Se envian parametros '" + this.getMyPos("x") + "' y '" + this.getMyPos("x") + "' de tipo double");
+        int resp = this.servicio.paso2(this.getMyPos("x"),this.getMyPos("y"));
+        if (resp == -1 )
+            JOptionPane.showMessageDialog(null, "EBS retorna '-1' de tipo int. Auto cercano no encontrado");
+        else
+            JOptionPane.showMessageDialog(null, "EBS retorna '" + resp + "' de tipo int. id del Piloto");
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        Random rnd = new Random();
+        int idPiloto = rnd.nextInt(5);
+        JOptionPane.showMessageDialog(null, "Se envia parametro '" + idPiloto + "', '" + this.getMyPos("y") + "' y '" + this.getMyPos("y") + "' de tipo int,double,double");
+        PilotoRetorno resp = this.servicio.paso3(idPiloto, this.getMyPos("y"), this.getMyPos("y"));
+        JOptionPane.showMessageDialog(null, "EBS retorna '" + resp.getNombre() + "','" + resp.getAuto() + "','" + resp.getColor()+ "' y " + resp.getPlaca() + "' de tipo object.");
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -239,7 +247,8 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

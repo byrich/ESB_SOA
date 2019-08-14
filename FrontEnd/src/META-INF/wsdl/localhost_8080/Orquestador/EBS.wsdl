@@ -10,15 +10,72 @@
 <message name="Solicitud_de_transporteResponse">
 <part name="parameters" element="tns:Solicitud_de_transporteResponse"/>
 </message>
+<message name="paso_1">
+<part name="parameters" element="tns:paso_1"/>
+</message>
+<message name="paso_1Response">
+<part name="parameters" element="tns:paso_1Response"/>
+</message>
+<message name="paso_3">
+<part name="parameters" element="tns:paso_3"/>
+</message>
+<message name="paso_3Response">
+<part name="parameters" element="tns:paso_3Response"/>
+</message>
+<message name="paso_2">
+<part name="parameters" element="tns:paso_2"/>
+</message>
+<message name="paso_2Response">
+<part name="parameters" element="tns:paso_2Response"/>
+</message>
 <portType name="EBS">
 <operation name="Solicitud_de_transporte">
 <input wsam:Action="http://Server/EBS/Solicitud_de_transporteRequest" message="tns:Solicitud_de_transporte"/>
 <output wsam:Action="http://Server/EBS/Solicitud_de_transporteResponse" message="tns:Solicitud_de_transporteResponse"/>
 </operation>
+<operation name="paso_1">
+<input wsam:Action="http://Server/EBS/paso_1Request" message="tns:paso_1"/>
+<output wsam:Action="http://Server/EBS/paso_1Response" message="tns:paso_1Response"/>
+</operation>
+<operation name="paso_3">
+<input wsam:Action="http://Server/EBS/paso_3Request" message="tns:paso_3"/>
+<output wsam:Action="http://Server/EBS/paso_3Response" message="tns:paso_3Response"/>
+</operation>
+<operation name="paso_2">
+<input wsam:Action="http://Server/EBS/paso_2Request" message="tns:paso_2"/>
+<output wsam:Action="http://Server/EBS/paso_2Response" message="tns:paso_2Response"/>
+</operation>
 </portType>
 <binding name="EBSPortBinding" type="tns:EBS">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
 <operation name="Solicitud_de_transporte">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="paso_1">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="paso_3">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="paso_2">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
