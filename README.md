@@ -8,7 +8,10 @@ En este repositorio se encuentran proyectos que buscan simular un entorno de mic
 
 - El proyecto **Frontend** simula una muy sencilla aplicacion movil que consume los servicios del orquestador.
 
-![sf](/arquitectura.png)
+![SOA](/arquitectura.png)
+
+En el siguiente video se puede observar el consumo del orquestador desde el frontend:
+- https://www.youtube.com/watch?v=S6cGhFtqlV8
 
 Creado por **Byrich** 
 - Carnet: 201404099
