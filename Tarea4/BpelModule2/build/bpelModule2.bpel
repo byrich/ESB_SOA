@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<process
+    name="bpelModule2"
+    targetNamespace="http://enterprise.netbeans.org/bpel/BpelModule2/bpelModule2"
+    xmlns:tns="http://enterprise.netbeans.org/bpel/BpelModule2/bpelModule2"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+    xmlns:sxt="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace" 
+    xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2"
+    xmlns:sxat="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Attachment"
+    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:ns0="http://serverPiloto/">
+    <import namespace="http://enterprise.netbeans.org/bpel/WSClientesWrapper" location="WSClientesWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://serverCliente/" location="http://localhost:8080/ServiciosUber/WSClientes?WSDL" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://enterprise.netbeans.org/bpel/WSCarrosWrapper" location="WSCarrosWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://serverCarros/" location="http://localhost:8080/ServiciosUber/WSCarros?WSDL" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://enterprise.netbeans.org/bpel/WSPilotosWrapper" location="WSPilotosWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://serverPiloto/" location="http://localhost:8080/ServiciosUber/WSPilotos?WSDL" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/BpelModule2/src/ESBfront" location="ESBfront.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <partnerLinks>
+        <partnerLink name="PartnerLink7" xmlns:tns="http://enterprise.netbeans.org/bpel/WSClientesWrapper" partnerLinkType="tns:WSClientesLinkType" partnerRole="WSClientesRole"/>
+        <partnerLink name="PartnerLink6" xmlns:tns="http://enterprise.netbeans.org/bpel/WSCarrosWrapper" partnerLinkType="tns:WSCarrosLinkType" partnerRole="WSCarrosRole"/>
+        <partnerLink name="PartnerLink8" xmlns:tns="http://enterprise.netbeans.org/bpel/WSPilotosWrapper" partnerLinkType="tns:WSPilotosLinkType" partnerRole="WSPilotosRole"/>
+        <partnerLink name="PartnerLink5" xmlns:tns="http://j2ee.netbeans.org/wsdl/BpelModule2/src/ESBfront" partnerLinkType="tns:ESBfront" myRole="ESBfrontPortTypeRole"/>
+    </partnerLinks>
+    <variables>
+        <variable name="Registrar_viaje_asncOut" messageType="ns0:Registrar_viaje_asncResponse"/>
+        <variable name="Registrar_viaje_asncIn" messageType="ns0:Registrar_viaje_asnc"/>
+        <variable name="Registrar_viajeOut" messageType="ns0:Registrar_viajeResponse"/>
+        <variable name="Registrar_viajeIn" messageType="ns0:Registrar_viaje"/>
+        <variable name="Autos_cercanosOut" xmlns:tns="http://serverCarros/" messageType="tns:Autos_cercanosResponse"/>
+        <variable name="Autos_cercanosIn" xmlns:tns="http://serverCarros/" messageType="tns:Autos_cercanos"/>
+        <variable name="Verificacion_de_cuentaOut" xmlns:tns="http://serverCliente/" messageType="tns:Verificacion_de_cuentaResponse"/>
+        <variable name="Verificacion_de_cuentaIn" xmlns:tns="http://serverCliente/" messageType="tns:Verificacion_de_cuenta"/>
+        <variable name="ESBfrontOperationOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/BpelModule2/src/ESBfront" messageType="tns:ESBfrontOperationResponse"/>
+        <variable name="ESBfrontOperationIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/BpelModule2/src/ESBfront" messageType="tns:ESBfrontOperationRequest"/>
+    </variables>
+    <sequence>
+        <receive name="Receive1" createInstance="yes" partnerLink="PartnerLink5" operation="ESBfrontOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/BpelModule2/src/ESBfront" portType="tns:ESBfrontPortType" variable="ESBfrontOperationIn"/>
+        <assign name="Assign1">
+            <copy>
+                <from variable="ESBfrontOperationIn" part="idCliente"/>
+                <to>$Verificacion_de_cuentaIn.parameters/Id</to>
+            </copy>
+        </assign>
+        <invoke name="Invoke1" partnerLink="PartnerLink7" operation="Verificacion_de_cuenta" xmlns:tns="http://serverCliente/" portType="tns:WSClientes" inputVariable="Verificacion_de_cuentaIn" outputVariable="Verificacion_de_cuentaOut"/>
+        <if name="If1">
+            <condition>$Verificacion_de_cuentaOut.parameters/return</condition>
+            <sequence name="Sequence1">
+                <assign name="Assign2">
+                    <copy>
+                        <from variable="ESBfrontOperationIn" part="coordX"/>
+                        <to>$Autos_cercanosIn.parameters/coordA</to>
+                    </copy>
+                    <copy>
+                        <from variable="ESBfrontOperationIn" part="coordY"/>
+                        <to>$Autos_cercanosIn.parameters/coordB</to>
+                    </copy>
+                </assign>
+                <invoke name="Invoke2" partnerLink="PartnerLink6" operation="Autos_cercanos" xmlns:tns="http://serverCarros/" portType="tns:WSCarros" inputVariable="Autos_cercanosIn" outputVariable="Autos_cercanosOut"/>
+                <if name="If2">
+                    <condition>-1 != $Autos_cercanosOut.parameters/return</condition>
+                    <sequence name="Sequence2">
+                        <assign name="Assign3">
+                            <copy>
+                                <from variable="ESBfrontOperationIn" part="coordX"/>
+                                <to>$Registrar_viajeIn.parameters/coordA</to>
+                            </copy>
+                            <copy>
+                                <from variable="ESBfrontOperationIn" part="coordY"/>
+                                <to>$Registrar_viajeIn.parameters/coordB</to>
+                            </copy>
+                            <copy>
+                                <from>$Autos_cercanosOut.parameters/return</from>
+                                <to>$Registrar_viajeIn.parameters/idPiloto</to>
+                            </copy>
+                            <copy>
+                                <from>$Autos_cercanosOut.parameters/return</from>
+                                <to>$Registrar_viaje_asncIn.parameters/idPiloto</to>
+                            </copy>
+                            <copy>
+                                <from variable="ESBfrontOperationIn" part="coordX"/>
+                                <to>$Registrar_viaje_asncIn.parameters/coordA</to>
+                            </copy>
+                            <copy>
+                                <from variable="ESBfrontOperationIn" part="coordY"/>
+                                <to>$Registrar_viaje_asncIn.parameters/coordB</to>
+                            </copy>
+                        </assign>
+                        <flow name="Flow1">
+                            <sequence name="FlowSequence">
+                                <invoke name="Invoke4" partnerLink="PartnerLink8" operation="Registrar_viaje" xmlns:tns="http://j2ee.netbeans.org/wsdl/BpelModule2/localhost_8080/asicrono" portType="ns0:WSPilotos" inputVariable="Registrar_viajeIn" outputVariable="Registrar_viajeOut"/>
+                                <invoke name="Invoke3" partnerLink="PartnerLink8" operation="Registrar_viaje_asnc" portType="ns0:WSPilotos" inputVariable="Registrar_viaje_asncIn" outputVariable="Registrar_viaje_asncOut"/>
+                            </sequence>
+                        </flow>
+                        <assign name="Assign4">
+                            <copy>
+                                <from>$Registrar_viajeOut.parameters/return/nombre</from>
+                                <to variable="ESBfrontOperationOut" part="nombre"/>
+                            </copy>
+                            <copy>
+                                <from>$Registrar_viajeOut.parameters/return/placa</from>
+                                <to variable="ESBfrontOperationOut" part="placa"/>
+                            </copy>
+                            <copy>
+                                <from>$Registrar_viajeOut.parameters/return/auto</from>
+                                <to variable="ESBfrontOperationOut" part="auto"/>
+                            </copy>
+                            <copy>
+                                <from>$Registrar_viajeOut.parameters/return/color</from>
+                                <to variable="ESBfrontOperationOut" part="color"/>
+                            </copy>
+                            <copy>
+                                <from>' '</from>
+                                <to variable="ESBfrontOperationOut" part="error"/>
+                            </copy>
+                        </assign>
+                    </sequence>
+                    <else>
+                        <assign name="Assign5">
+                            <copy>
+                                <from>'No se encontraron Pilotos disponibles'</from>
+                                <to variable="ESBfrontOperationOut" part="error"/>
+                            </copy>
+                            <copy>
+                                <from>' '</from>
+                                <to variable="ESBfrontOperationOut" part="nombre"/>
+                            </copy>
+                            <copy>
+                                <from>' '</from>
+                                <to variable="ESBfrontOperationOut" part="placa"/>
+                            </copy>
+                            <copy>
+                                <from>' '</from>
+                                <to variable="ESBfrontOperationOut" part="auto"/>
+                            </copy>
+                            <copy>
+                                <from>' '</from>
+                                <to variable="ESBfrontOperationOut" part="color"/>
+                            </copy>
+                        </assign>
+                    </else>
+                </if>
+            </sequence>
+            <else>
+                <assign name="Assign6">
+                    <copy>
+                        <from>'Tu periodo de prueba ya expiro!'</from>
+                        <to variable="ESBfrontOperationOut" part="error"/>
+                    </copy>
+                    <copy>
+                        <from>' '</from>
+                        <to variable="ESBfrontOperationOut" part="nombre"/>
+                    </copy>
+                    <copy>
+                        <from>' '</from>
+                        <to variable="ESBfrontOperationOut" part="placa"/>
+                    </copy>
+                    <copy>
+                        <from>' '</from>
+                        <to variable="ESBfrontOperationOut" part="auto"/>
+                    </copy>
+                    <copy>
+                        <from>' '</from>
+                        <to variable="ESBfrontOperationOut" part="color"/>
+                    </copy>
+                </assign>
+            </else>
+        </if>
+        <reply name="Reply1" partnerLink="PartnerLink5" operation="ESBfrontOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/BpelModule2/src/ESBfront" portType="tns:ESBfrontPortType" variable="ESBfrontOperationOut"/>
+    </sequence>
+</process>

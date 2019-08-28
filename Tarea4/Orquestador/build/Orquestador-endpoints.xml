@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<endpoints xmlns="http://xml.netbeans.org/schema/endPoints" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xml.netbeans.org/schema/endPoints endPoints.xsd">
+    <project>
+        <name>Orquestador</name>
+        <version>1.0</version>
+        <description>description</description>
+    </project>
+    <team>
+        <name>unknown team</name>
+        <contact>no contact provided</contact>
+    </team>
+    <endpoint>
+        <type>provider</type>
+        <endpoint-name>ESBfrontPortTypeRole_myRole</endpoint-name>
+        <service-name>
+            <namespace>http://enterprise.netbeans.org/bpel/BpelModule2/bpelModule2</namespace>
+            <localname>PartnerLink5</localname>
+        </service-name>
+        <interface-name>
+            <namespace>http://j2ee.netbeans.org/wsdl/BpelModule2/src/ESBfront</namespace>
+            <localname>ESBfrontPortType</localname>
+        </interface-name>
+        <description>description of the service provided or consumed through this endPoint</description>
+    </endpoint>
+    <endpoint>
+        <type>consumer</type>
+        <endpoint-name>WSClientesRole_partnerRole</endpoint-name>
+        <service-name>
+            <namespace>http://enterprise.netbeans.org/bpel/BpelModule2/bpelModule2</namespace>
+            <localname>PartnerLink7</localname>
+        </service-name>
+        <interface-name>
+            <namespace>http://serverCliente/</namespace>
+            <localname>WSClientes</localname>
+        </interface-name>
+        <description>description of the service provided or consumed through this endPoint</description>
+    </endpoint>
+    <endpoint>
+        <type>consumer</type>
+        <endpoint-name>WSCarrosRole_partnerRole</endpoint-name>
+        <service-name>
+            <namespace>http://enterprise.netbeans.org/bpel/BpelModule2/bpelModule2</namespace>
+            <localname>PartnerLink6</localname>
+        </service-name>
+        <interface-name>
+            <namespace>http://serverCarros/</namespace>
+            <localname>WSCarros</localname>
+        </interface-name>
+        <description>description of the service provided or consumed through this endPoint</description>
+    </endpoint>
+    <endpoint>
+        <type>consumer</type>
+        <endpoint-name>WSPilotosRole_partnerRole</endpoint-name>
+        <service-name>
+            <namespace>http://enterprise.netbeans.org/bpel/BpelModule2/bpelModule2</namespace>
+            <localname>PartnerLink8</localname>
+        </service-name>
+        <interface-name>
+            <namespace>http://serverPiloto/</namespace>
+            <localname>WSPilotos</localname>
+        </interface-name>
+        <description>description of the service provided or consumed through this endPoint</description>
+    </endpoint>
+</endpoints>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jbi xmlns="http://java.sun.com/xml/ns/jbi" xmlns:ns1="http://enterprise.netbeans.org/bpel/BpelModule2/bpelModule2" xmlns:ns2="http://serverPiloto/" xmlns:ns3="Orquestador1" xmlns:ns4="http://serverCliente/" xmlns:ns5="http://serverCarros/" xmlns:ns6="http://j2ee.netbeans.org/wsdl/BpelModule2/src/ESBfront" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/jbi ./jbi.xsd">
+    <service-assembly>
+        <identification>
+            <name>Orquestador</name>
+            <description>Represents the Service Assembly of Orquestador</description>
+        </identification>
+        <service-unit>
+            <identification>
+                <name>Orquestador-BpelModule2</name>
+                <description>Represents this Service Unit</description>
+            </identification>
+            <target>
+                <artifacts-zip>BpelModule2.jar</artifacts-zip>
+                <component-name>sun-bpel-engine</component-name>
+            </target>
+        </service-unit>
+        <service-unit>
+            <identification>
+                <name>Orquestador-sun-http-binding</name>
+                <description>Represents this Service Unit</description>
+            </identification>
+            <target>
+                <artifacts-zip>sun-http-binding.jar</artifacts-zip>
+                <component-name>sun-http-binding</component-name>
+            </target>
+        </service-unit>
+        <connections>
+            <connection>
+                <consumer endpoint-name="WSPilotosRole_partnerRole" service-name="ns1:PartnerLink8"/>
+                <provider endpoint-name="WSPilotosPort" service-name="ns2:WSPilotos"/>
+            </connection>
+            <connection>
+                <consumer endpoint-name="casaPort1" service-name="ns3:Orquestador1Service1"/>
+                <provider endpoint-name="ESBfrontPortTypeRole_myRole" service-name="ns1:PartnerLink5"/>
+            </connection>
+            <connection>
+                <consumer endpoint-name="WSClientesRole_partnerRole" service-name="ns1:PartnerLink7"/>
+                <provider endpoint-name="WSClientesPort" service-name="ns4:WSClientes"/>
+            </connection>
+            <connection>
+                <consumer endpoint-name="WSCarrosRole_partnerRole" service-name="ns1:PartnerLink6"/>
+                <provider endpoint-name="WSCarrosPort" service-name="ns5:WSCarros"/>
+            </connection>
+        </connections>
+        <route-types xmlns="http://www.open-esb.net/xml/ns/jbi">
+            <source endpoint-name="WSPilotosRole_partnerRole" mode="local" routing-rule="default" service-name="ns1:PartnerLink8">direct</source>
+            <source endpoint-name="casaPort1" mode="local" routing-rule="default" service-name="ns3:Orquestador1Service1">direct</source>
+            <source endpoint-name="WSClientesRole_partnerRole" mode="local" routing-rule="default" service-name="ns1:PartnerLink7">direct</source>
+            <source endpoint-name="WSCarrosRole_partnerRole" mode="local" routing-rule="default" service-name="ns1:PartnerLink6">direct</source>
+        </route-types>
+        <interface-mapping xmlns="http://www.open-esb.net/xml/ns/jbi">
+            <implementation>
+                <by-provider endpoint-name="ESBfrontPortTypeRole_myRole" service-name="ns1:PartnerLink5"/>
+                <interface name="ns6:ESBfrontPortType"/>
+            </implementation>
+            <implementation>
+                <by-provider endpoint-name="WSPilotosPort" service-name="ns2:WSPilotos"/>
+                <interface name="ns2:WSPilotos"/>
+            </implementation>
+            <implementation>
+                <by-provider endpoint-name="WSClientesPort" service-name="ns4:WSClientes"/>
+                <interface name="ns4:WSClientes"/>
+            </implementation>
+            <implementation>
+                <by-provider endpoint-name="WSCarrosPort" service-name="ns5:WSCarros"/>
+                <interface name="ns5:WSCarros"/>
+            </implementation>
+        </interface-mapping>
+    </service-assembly>
+</jbi>

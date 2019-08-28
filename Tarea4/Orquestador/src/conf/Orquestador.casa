@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<casa xmlns="http://java.sun.com/xml/ns/casa" xmlns:ns1="http://serverPiloto/" xmlns:ns2="http://serverCliente/" xmlns:ns3="http://serverCarros/" xmlns:ns4="Orquestador1" xmlns:ns5="http://j2ee.netbeans.org/wsdl/BpelModule2/src/ESBfront" xmlns:ns6="http://enterprise.netbeans.org/bpel/BpelModule2/bpelModule2" xmlns:xlink="http://www.w3.org/2000/xlink">
+    <endpoints>
+        <endpoint endpoint-name="WSPilotosPort" interface-name="ns1:WSPilotos" name="endpoint1" service-name="ns1:WSPilotos"/>
+        <endpoint endpoint-name="WSClientesPort" interface-name="ns2:WSClientes" name="endpoint2" service-name="ns2:WSClientes"/>
+        <endpoint endpoint-name="WSCarrosPort" interface-name="ns3:WSCarros" name="endpoint3" service-name="ns3:WSCarros"/>
+        <endpoint endpoint-name="casaPort1" interface-name="ns5:ESBfrontPortType" name="endpoint4" service-name="ns4:Orquestador1Service1"/>
+        <endpoint display-name="PartnerLink5" endpoint-name="ESBfrontPortTypeRole_myRole" file-path="bpelModule2.bpel" interface-name="ns5:ESBfrontPortType" name="endpoint5" process-name="bpelModule2" service-name="ns6:PartnerLink5"/>
+        <endpoint display-name="PartnerLink7" endpoint-name="WSClientesRole_partnerRole" file-path="bpelModule2.bpel" interface-name="ns2:WSClientes" name="endpoint6" process-name="bpelModule2" service-name="ns6:PartnerLink7"/>
+        <endpoint display-name="PartnerLink6" endpoint-name="WSCarrosRole_partnerRole" file-path="bpelModule2.bpel" interface-name="ns3:WSCarros" name="endpoint7" process-name="bpelModule2" service-name="ns6:PartnerLink6"/>
+        <endpoint display-name="PartnerLink8" endpoint-name="WSPilotosRole_partnerRole" file-path="bpelModule2.bpel" interface-name="ns1:WSPilotos" name="endpoint8" process-name="bpelModule2" service-name="ns6:PartnerLink8"/>
+    </endpoints>
+    <service-units>
+        <service-engine-service-unit artifacts-zip="BpelModule2.jar" component-name="sun-bpel-engine" defined="true" description="Represents this Service Unit" internal="true" name="Orquestador-BpelModule2" unit-name="BpelModule2" unknown="false" x="155" y="99">
+            <provides endpoint="endpoint5"/>
+            <consumes endpoint="endpoint6"/>
+            <consumes endpoint="endpoint7"/>
+            <consumes endpoint="endpoint8"/>
+        </service-engine-service-unit>
+        <binding-component-service-unit artifacts-zip="sun-http-binding.jar" component-name="sun-http-binding" description="Represents this Service Unit" name="Orquestador-sun-http-binding" unit-name="sun-http-binding">
+            <ports>
+                <port bindingType="soap" x="67" y="299">
+                    <link xlink:href="../jbiasa/Orquestador.wsdl#xpointer(/definitions/service[@name='Orquestador1Service1']/port[@name='casaPort1'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint4"/>
+                    <provides endpoint="endpoint4"/>
+                </port>
+                <port x="67" y="197">
+                    <link xlink:href="../jbiServiceUnits/BpelModule2/localhost_8080/ServiciosUber/WSCarros.wsdl#xpointer(/definitions/service[@name='WSCarros']/port[@name='WSCarrosPort'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint3"/>
+                    <provides endpoint="endpoint3"/>
+                </port>
+                <port x="67" y="118">
+                    <link xlink:href="../jbiServiceUnits/BpelModule2/localhost_8080/ServiciosUber/WSClientes.wsdl#xpointer(/definitions/service[@name='WSClientes']/port[@name='WSClientesPort'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint2"/>
+                    <provides endpoint="endpoint2"/>
+                </port>
+                <port x="67" y="39">
+                    <link xlink:href="../jbiServiceUnits/BpelModule2/localhost_8080/ServiciosUber/WSPilotos.wsdl#xpointer(/definitions/service[@name='WSPilotos']/port[@name='WSPilotosPort'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint1"/>
+                    <provides endpoint="endpoint1"/>
+                </port>
+            </ports>
+        </binding-component-service-unit>
+    </service-units>
+    <connections>
+        <connection consumer="endpoint8" mode="" provider="endpoint1" route-type="" routing-rule="" state="unchanged"/>
+        <connection consumer="endpoint4" mode="" provider="endpoint5" route-type="direct" routing-rule="" state="new"/>
+        <connection consumer="endpoint6" mode="" provider="endpoint2" route-type="" routing-rule="" state="unchanged"/>
+        <connection consumer="endpoint7" mode="" provider="endpoint3" route-type="" routing-rule="" state="unchanged"/>
+    </connections>
+    <porttypes>
+        <link xlink:href="../jbiasa/Orquestador.wsdl#xpointer(/definitions/portType[@name='dummyCasaPortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BpelModule2/ESBfront.wsdl#xpointer(/definitions/portType[@name='ESBfrontPortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BpelModule2/localhost_8080/ServiciosUber/WSCarros.wsdl#xpointer(/definitions/portType[@name='WSCarros'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BpelModule2/localhost_8080/ServiciosUber/WSClientes.wsdl#xpointer(/definitions/portType[@name='WSClientes'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BpelModule2/localhost_8080/ServiciosUber/WSPilotos.wsdl#xpointer(/definitions/portType[@name='WSPilotos'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/Orquestador.wsdl#xpointer(/definitions/portType[@name='dummyCasaPortType'])" xlink:type="simple"/>
+    </porttypes>
+    <bindings>
+        <link xlink:href="../jbiasa/Orquestador.wsdl#xpointer(/definitions/binding[@name='casaBinding1'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BpelModule2/localhost_8080/ServiciosUber/WSCarros.wsdl#xpointer(/definitions/binding[@name='WSCarrosPortBinding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BpelModule2/localhost_8080/ServiciosUber/WSClientes.wsdl#xpointer(/definitions/binding[@name='WSClientesPortBinding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BpelModule2/localhost_8080/ServiciosUber/WSPilotos.wsdl#xpointer(/definitions/binding[@name='WSPilotosPortBinding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/Orquestador.wsdl#xpointer(/definitions/binding[@name='casaBinding1'])" xlink:type="simple"/>
+    </bindings>
+    <services>
+        <link xlink:href="../jbiasa/Orquestador.wsdl#xpointer(/definitions/service[@name='Orquestador1Service1'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BpelModule2/localhost_8080/ServiciosUber/WSCarros.wsdl#xpointer(/definitions/service[@name='WSCarros'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BpelModule2/localhost_8080/ServiciosUber/WSClientes.wsdl#xpointer(/definitions/service[@name='WSClientes'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BpelModule2/localhost_8080/ServiciosUber/WSPilotos.wsdl#xpointer(/definitions/service[@name='WSPilotos'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/Orquestador.wsdl#xpointer(/definitions/service[@name='Orquestador1Service1'])" xlink:type="simple"/>
+    </services>
+    <regions>
+        <region name="WSDL Endpoints" width="150"/>
+        <region name="JBI Modules" width="500"/>
+        <region name="External Modules" width="200"/>
+    </regions>
+</casa>

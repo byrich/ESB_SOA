@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <nextCatalog catalog="nbproject/private/retriever/catalog.xml"/>
+    <system systemId="http://localhost:8080/ServiciosUber/WSClientes?WSDL" uri="src/localhost_8080/ServiciosUber/WSClientes.wsdl"/>
+    <system systemId="http://localhost:8080/ServiciosUber/WSClientes?xsd=1" uri="src/localhost_8080/ServiciosUber/WSClientes.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/ServiciosUber/WSCarros?WSDL" uri="src/localhost_8080/ServiciosUber/WSCarros.wsdl"/>
+    <system systemId="http://localhost:8080/ServiciosUber/WSCarros?xsd=1" uri="src/localhost_8080/ServiciosUber/WSCarros.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/ServiciosUber/WSPilotos?WSDL" uri="src/localhost_8080/ServiciosUber/WSPilotos.wsdl"/>
+    <system systemId="http://localhost:8080/ServiciosUber/WSPilotos?xsd=1" uri="src/localhost_8080/ServiciosUber/WSPilotos.xsd_1.xsd"/>
+</catalog>

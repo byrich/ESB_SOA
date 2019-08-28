@@ -26,6 +26,19 @@ public class WSPilotos {
      * @return infoPiloto
      */
     
+    @WebMethod(operationName = "Registrar_viaje_asnc")
+    public Boolean regisViajeAsnc(@WebParam(name = "idPiloto")int id, @WebParam(name = "coordA") double aPos, @WebParam(name = "coordB") double bPos) {
+        
+        piloto datosPiloto = this.misPilotos.pilotos.get(id);
+        /*
+        *
+        * Almacenar viaje a realizar
+        * ...
+        *
+        */
+        return true;
+    }
+    
     @WebMethod(operationName = "Registrar_viaje")
     public piloto registrarViaje(@WebParam(name = "idPiloto")int id, @WebParam(name = "coordA") double aPos, @WebParam(name = "coordB") double bPos) {
         

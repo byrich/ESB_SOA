@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://schemas.xmlsoap.org/soap/envelope/ http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Body>
+    <m:ESBfrontOperationResponse xmlns:m="Orquestador1" xmlns:msgns="http://j2ee.netbeans.org/wsdl/BpelModule2/src/ESBfront">
+      <error> </error>
+      <nombre xmlns:msgns="http://serverPiloto/" xmlns:ns0="http://j2ee.netbeans.org/wsdl/BpelModule2/src/ESBfront">Lucia</nombre>
+      <placa xmlns:msgns="http://serverPiloto/" xmlns:ns0="http://j2ee.netbeans.org/wsdl/BpelModule2/src/ESBfront">P945qwe</placa>
+      <auto xmlns:msgns="http://serverPiloto/" xmlns:ns0="http://j2ee.netbeans.org/wsdl/BpelModule2/src/ESBfront">hoda Civic</auto>
+      <color xmlns:msgns="http://serverPiloto/" xmlns:ns0="http://j2ee.netbeans.org/wsdl/BpelModule2/src/ESBfront">azul</color>
+    </m:ESBfrontOperationResponse>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

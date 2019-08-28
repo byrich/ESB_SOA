@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="WSCarrosWrapper" targetNamespace="http://enterprise.netbeans.org/bpel/WSCarrosWrapper" xmlns:tns="http://enterprise.netbeans.org/bpel/WSCarrosWrapper" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:ns="http://serverCarros/">
+    <import location="http://localhost:8080/ServiciosUber/WSCarros?WSDL" namespace="http://serverCarros/"/>
+    <plnk:partnerLinkType name="WSCarrosLinkType">
+        <plnk:role name="WSCarrosRole" portType="ns:WSCarros"/>
+    </plnk:partnerLinkType>
+</definitions>

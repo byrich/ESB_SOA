@@ -9,14 +9,8 @@ import java.util.Random;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
+import javax.xml.ws.WebServiceRef;
 import nodo.pilotoRetorno;
-import serviceCarros.WSCarros;
-import serviceCarros.WSCarros_Service;
-import serviceCliente.WSClientes;
-import serviceCliente.WSClientes_Service;
-import servicePilotos.Piloto;
-import servicePilotos.WSPilotos;
-import servicePilotos.WSPilotos_Service;
 
 /**
  *
@@ -24,6 +18,9 @@ import servicePilotos.WSPilotos_Service;
  */
 @WebService(serviceName = "EBS")
 public class EBS {
+
+    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/ServiciosUber/WSClientes.wsdl")
+    private serviceCliente.WSClientes_Service service;
 
     /**
      * Servicio principal de orquestacion de servicios
@@ -109,5 +106,19 @@ public class EBS {
         // Enviar notiviacion al piloto
         // "Notificar(); ..."
         return salida;
+    }
+
+    private boolean verificacionDeCuenta(java.lang.String id) {
+        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
+        // If the calling of port operations may lead to race condition some synchronization is required.
+        serviceCliente.WSClientes port = service.getWSClientesPort();
+        return port.verificacionDeCuenta(id);
+    }
+
+    private boolean verificacionDeCuenta_1(java.lang.String id) {
+        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
+        // If the calling of port operations may lead to race condition some synchronization is required.
+        serviceCliente.WSClientes port = service.getWSClientesPort();
+        return port.verificacionDeCuenta(id);
     }
 }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="ESBfront" targetNamespace="http://j2ee.netbeans.org/wsdl/BpelModule2/src/ESBfront"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://j2ee.netbeans.org/wsdl/BpelModule2/src/ESBfront" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype">
+    <types/>
+    <message name="ESBfrontOperationRequest">
+        <part name="idCliente" type="xsd:string"/>
+        <part name="coordX" type="xsd:double"/>
+        <part name="coordY" type="xsd:double"/>
+    </message>
+    <message name="ESBfrontOperationResponse">
+        <part name="error" type="xsd:string"/>
+        <part name="nombre" type="xsd:string"/>
+        <part name="placa" type="xsd:string"/>
+        <part name="auto" type="xsd:string"/>
+        <part name="color" type="xsd:string"/>
+    </message>
+    <portType name="ESBfrontPortType">
+        <operation name="ESBfrontOperation">
+            <input name="input1" message="tns:ESBfrontOperationRequest"/>
+            <output name="output1" message="tns:ESBfrontOperationResponse"/>
+        </operation>
+    </portType>
+    <plnk:partnerLinkType name="ESBfront">
+        <!-- A partner link type is automatically generated when a new port type is added. Partner link types are used by BPEL processes. 
+In a BPEL process, a partner link represents the interaction between the BPEL process and a partner service. Each partner link is associated with a partner link type.
+A partner link type characterizes the conversational relationship between two services. The partner link type can have one or two roles.-->
+        <plnk:role name="ESBfrontPortTypeRole" portType="tns:ESBfrontPortType"/>
+    </plnk:partnerLinkType>
+</definitions>
